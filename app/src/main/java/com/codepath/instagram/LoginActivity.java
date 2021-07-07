@@ -22,6 +22,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // When the user is already logged in, simply go to the
+        // main activity.
+        if (ParseUser.getCurrentUser() != null) {
+            goToMainActivity();
+        }
+
         // When the login button is clicked, login.
         EditText etUsername = findViewById(R.id.etUsername);
         EditText etPassword = findViewById(R.id.etPassword);
@@ -41,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(String username, String password) {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
-            // When we're done logging in...
+            // After login...
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
@@ -64,5 +70,9 @@ public class LoginActivity extends AppCompatActivity {
     public void goToMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
+
+        // Finish the login activity so that when the user goes back, the user doesn't
+        // go back to the login activity.
+        finish();
     }
 }
