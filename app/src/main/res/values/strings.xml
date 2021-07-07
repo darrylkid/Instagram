@@ -4,4 +4,8 @@
     <string name="login_password">password</string>
     <string name="login">LOGIN</string>
     <string name="btnLogout">LOGOUT</string>
+    <string name="btnSubmit">SUBMIT</string>
+    <string name="btnTakePicture">TAKE PICTURE</string>
+    <string name="post">CREATE POST</string>
+    <string name="description">Description...</string>
 </resources>
