@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
-    static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToPostActivity() {
-        Intent intent = new Intent(MainActivity.this, Post.class);
+        Intent intent = new Intent(MainActivity.this, PostActivity.class);
         startActivity(intent);
         // We don't include finish here so that the user can go back to the
         // main activity.
