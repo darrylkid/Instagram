@@ -3,9 +3,11 @@ package com.codepath.instagram;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -37,6 +39,19 @@ public class FeedActivity extends AppCompatActivity {
         rvFeed.setAdapter(feedAdapter);
         rvFeed.setLayoutManager(new LinearLayoutManager(FeedActivity.this));
         queryPosts();
+
+        // Set up an onRefreshListener.
+        SwipeRefreshLayout swipeContainer = findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Query the post and notify the adapter.
+                queryPosts();
+
+                // Signal the swipe container to stop visually refreshing.
+                swipeContainer.setRefreshing(false);
+            }
+        });
     }
 
     // Get the posts from the database and updates the adapter's post list.
@@ -66,10 +81,11 @@ public class FeedActivity extends AppCompatActivity {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
 
+                // Clear the post and notify the adapter.
+                feedAdapter.clear();
 
                 // Add the posts into the adapter and notify it.
-                postList.addAll(pL);
-                feedAdapter.notifyDataSetChanged();
+                feedAdapter.addAll(pL);
             }
         });
     }

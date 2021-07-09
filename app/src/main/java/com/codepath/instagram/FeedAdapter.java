@@ -47,6 +47,16 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         return postList.size();
     }
 
+    public void clear() {
+        postList.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Post> pL) {
+        postList.addAll(pL);
+        notifyDataSetChanged();
+    }
+
     // Inner class responsible for dynamically holding views.
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvUsername;
