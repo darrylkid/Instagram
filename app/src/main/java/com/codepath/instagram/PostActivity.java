@@ -181,26 +181,6 @@ public class PostActivity extends AppCompatActivity {
 
     }
 
-    // Get the posts from the database.
-    public void queryPosts() {
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> postList, ParseException e) {
-                if (e != null) {
-                    // A non-null parse exception means error when finding a particular post.
-                    String errorMsg = "Error querying the post.";
-                    Log.e(TAG, errorMsg);
-                    return;
-                }
-
-                for (Post post: postList) {
-                    Log.i(TAG, "Post description: " + post.getDescription());
-                }
-            }
-        });
-    }
-
 
     public void goToMainActvity() {
         Intent intent = new Intent(PostActivity.this, MainActivity.class);

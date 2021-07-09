@@ -8,4 +8,7 @@
     <string name="btnTakePicture">TAKE PICTURE</string>
     <string name="post">CREATE POST</string>
     <string name="description">Description...</string>
+    <string name="feed_username">username</string>
+    <string name="image">This is a user\'s image.</string>
+    <string name="feed">MY FEED</string>
 </resources>

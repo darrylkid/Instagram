@@ -14,9 +14,9 @@ import com.parse.ParseUser;
 public class Post extends ParseObject {
     // The assigned values to these constants must be exactly
     // the same as in the Back4App database manager.
-    private static final String KEY_USER = "user";
-    private static final String KEY_IMAGE = "image";
-    private static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_USER = "user";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_DESCRIPTION = "description";
 
     // These are not normal getter methods. They access the database using
     // the keys defined above.

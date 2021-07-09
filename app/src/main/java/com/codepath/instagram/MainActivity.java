@@ -42,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         };
         btnCreatePost.setOnClickListener(createPostHandler);
 
+        // Create an onClick listener for the feed button.
+        Button btnFeed = findViewById(R.id.btnFeed);
+        View.OnClickListener feedHandler = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFeedActivity();
+            }
+        };
+        btnFeed.setOnClickListener(feedHandler);
+
     }
 
 
@@ -53,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToPostActivity() {
         Intent intent = new Intent(MainActivity.this, PostActivity.class);
+        startActivity(intent);
+        // We don't include finish here so that the user can go back to the
+        // main activity.
+    }
+
+    public void goToFeedActivity() {
+        Intent intent = new Intent(MainActivity.this, FeedActivity.class);
         startActivity(intent);
         // We don't include finish here so that the user can go back to the
         // main activity.
