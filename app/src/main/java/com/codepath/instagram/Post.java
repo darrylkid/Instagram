@@ -5,6 +5,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import org.parceler.Parcel;
+
 /**
  * Post.java allows users to persist post details (user, image and description)
  * into the Parse Database using the Back4App database manager.
@@ -17,6 +19,9 @@ public class Post extends ParseObject {
     public static final String KEY_USER = "user";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_DESCRIPTION = "description";
+
+    // Empty constructor needed for the Parceler API.
+    public Post(){};
 
     // These are not normal getter methods. They access the database using
     // the keys defined above.

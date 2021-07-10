@@ -1,6 +1,7 @@
 package com.codepath.instagram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 
 import org.jetbrains.annotations.NotNull;
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -32,7 +34,28 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         // Assign a view holder containing a item_post.xml layout
         // to the activity_feed.xml layout.
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_post, parent, false));
+        View viewPost = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
+        ViewHolder viewHolderToReturn = new ViewHolder(viewPost);
+
+        // Create an on click listener for the view for viewing the details of a post.
+        View.OnClickListener postClickedHandler = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new intent, get the position of the clicked view of the post,
+                // and start the post detail activity.
+                int position = viewHolderToReturn.getAdapterPosition();
+                Post clickedPost = postList.get(position);
+                goToPostDetailActivity(clickedPost);
+            }
+        };
+        viewPost.setOnClickListener(postClickedHandler);
+        return viewHolderToReturn;
+    }
+
+    public void goToPostDetailActivity(Post post) {
+        Intent intent = new Intent(context, PostDetailActivity.class);
+        intent.putExtra(PostDetailActivity.TAG, post);
+        context.startActivity(intent);
     }
 
     @Override

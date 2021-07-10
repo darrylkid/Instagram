@@ -11,20 +11,26 @@
         android:layout_height="wrap_content"
         android:text="@string/feed_username"/>
 
-    <ImageView
-        android:id="@+id/ivImagePostFeed"
+    <FrameLayout
+        android:id="@+id/flImagePostFeed"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@id/tvUsername"
         android:layout_marginTop="5dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
-        android:contentDescription="@string/image" />
+        android:layout_below="@id/tvUsername"
+        android:background="@color/black">
+        <ImageView
+            android:id="@+id/ivImagePostFeed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/sym_def_app_icon"
+            android:contentDescription="@string/image" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ivImagePostFeed"
+        android:layout_below="@id/flImagePostFeed"
         android:layout_marginTop="5dp"
         android:text="@string/description"/>
 
