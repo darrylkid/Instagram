@@ -43,6 +43,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // On click listener for the sign up button.
+        Button btnSignup = findViewById(R.id.btnSignup);
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSignupActivity();
+            }
+        });
+
     }
 
     public void login(String username, String password) {
@@ -55,6 +64,9 @@ public class LoginActivity extends AppCompatActivity {
                     // after the user clicks the login button.
                     String errorMsg = "Login failed.";
                     Log.e(TAG, errorMsg, e);
+                    Toast.makeText(LoginActivity.this,
+                                   errorMsg,
+                                   Toast.LENGTH_SHORT).show();
                 } else {
                     // When the login is a success, go to the main Instagram activity.
                     String successMsg = "Login successful.";
@@ -74,5 +86,10 @@ public class LoginActivity extends AppCompatActivity {
         // Finish the login activity so that when the user goes back, the user doesn't
         // go back to the login activity.
         finish();
+    }
+
+    public void goToSignupActivity() {
+        Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+        startActivity(intent);
     }
 }
